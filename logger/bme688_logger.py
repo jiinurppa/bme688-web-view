@@ -1,3 +1,4 @@
+# Modified from https://github.com/electro-dan/PiZero_Air_Quality_Meter/blob/main/airqread.py
 import sys
 import logging
 import threading
