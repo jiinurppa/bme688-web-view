@@ -1,0 +1,14 @@
+[Unit]
+Description=BME688 Web View
+After=network.target
+
+[Service]
+Type=exec
+User=pi
+WorkingDirectory=/home/pi/bme688-web-view/view
+ExecStart=/home/pi/bme688-web-view/view/env/bin/python /home/pi/bme688-web-view/view/bme688_view.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
