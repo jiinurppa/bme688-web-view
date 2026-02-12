@@ -1,0 +1,14 @@
+[Unit]
+Description=BME688 Database Logger
+After=network.target
+
+[Service]
+Type=exec
+User=pi
+WorkingDirectory=/home/pi/bme688-web-view/logger
+ExecStart=/home/pi/bme688-web-view/logger/env/bin/python /home/pi/bme688-web-view/logger/bme688_logger.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
