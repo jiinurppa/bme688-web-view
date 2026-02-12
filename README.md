@@ -47,7 +47,7 @@ gas_percentage_accuracy TINYINT(1) UNSIGNED
 );
 ```
 
-5. Enable scheduler.
+5. Enable scheduler:
 
 ```sql
 SET @@GLOBAL.event_scheduler = ON;
@@ -75,7 +75,7 @@ python -m venv env
 ```sh
 source env/bin/activate
 ```
-3. Install imports with `pip install ...` (sorry, no requirements.txt for now)
+3. Install MySQLdb and [BME68x](https://github.com/mcalisterkm/bme68x-python-library-bsec2.6.1.0) packages.
 4. Deactivate virtual environment:
 ```sh
 deactivate
@@ -88,7 +88,7 @@ sudo cp bme688_logger.service /etc/systemd/system/
 ```sh
 sudo nano /etc/systemd/system/bme688_logger.service
 ```
-7. Reload systemd:
+7. Reload services:
 ```sh
 sudo systemctl daemon-reload
 ```
@@ -100,6 +100,8 @@ sudo systemctl enable bme688_logger
 ```sh
 sudo systemctl start bme688_logger
 ```
+
+The logger service will now write measurements to the database at XX:00, XX:15, XX:30 and XX:45.
 
 ### 3. Web view
 
@@ -124,7 +126,7 @@ sudo cp bme688_view.service /etc/systemd/system/
 ```sh
 sudo nano /etc/systemd/system/bme688_view.service
 ```
-7. Reload systemd:
+7. Reload services:
 ```sh
 sudo systemctl daemon-reload
 ```
