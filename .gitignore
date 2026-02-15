@@ -206,6 +206,10 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
+# Run burn in and update with your own files
+logger/conf_bme688.txt
+logger/state_bme688.txt
+
 # Don't leak your passwords!
 logger/password.txt
 view/password.txt
