@@ -1,6 +1,8 @@
 # BME688 Web View
 Web view for BME688 air quality sensor.
 
+Reference: [electro-dan.co.uk](https://electro-dan.co.uk/pc/raspberry-pi-air-quality-meter/)
+
 ## Screenshots
 
 ![Screenshot of static indoor air quality](graph.png)
