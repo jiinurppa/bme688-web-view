@@ -75,7 +75,7 @@ python -m venv env
 ```sh
 source env/bin/activate
 ```
-3. Install MySQLdb and [BME68x](https://github.com/mcalisterkm/bme68x-python-library-bsec2.6.1.0)  Python packages.
+3. Install MySQLdb and [BME68x](https://github.com/mcalisterkm/bme68x-python-library-bsec2.6.1.0) Python packages. You might also want to run [burn_in.py](https://github.com/mcalisterkm/bme68x-python-library-bsec2.6.1.0/blob/main/examples/burn_in.py) and provide your own `state_bme688.txt` file for more accurate measurements.
 4. Deactivate virtual environment:
 ```sh
 deactivate
