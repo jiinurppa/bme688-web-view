@@ -75,7 +75,7 @@ python -m venv env
 ```sh
 source env/bin/activate
 ```
-3. Install MySQLdb and [BME68x](https://github.com/mcalisterkm/bme68x-python-library-bsec2.6.1.0) packages.
+3. Install MySQLdb and [BME68x](https://github.com/mcalisterkm/bme68x-python-library-bsec2.6.1.0)  Python packages.
 4. Deactivate virtual environment:
 ```sh
 deactivate
@@ -107,7 +107,10 @@ python -m venv env
 ```sh
 source env/bin/activate
 ```
-3. Install imports with `pip install ...` (sorry, no requirements.txt for now)
+3. Install packages:
+```sh
+pip install -r requirements.txt
+```
 4. Deactivate virtual environment:
 ```sh
 deactivate
