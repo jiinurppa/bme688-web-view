@@ -1,4 +1,4 @@
-# bme688-web-view
+# BME688 Web View
 Web view for BME688 air quality sensor.
 
 ## Screenshots
@@ -88,16 +88,10 @@ sudo cp bme688_logger.service /etc/systemd/system/
 ```sh
 sudo nano /etc/systemd/system/bme688_logger.service
 ```
-7. Reload services:
+7. Reload services and enable and start logger:
 ```sh
 sudo systemctl daemon-reload
-```
-8. Enable logger:
-```sh
 sudo systemctl enable bme688_logger
-```
-9. Start logger:
-```sh
 sudo systemctl start bme688_logger
 ```
 
@@ -126,17 +120,11 @@ sudo cp bme688_view.service /etc/systemd/system/
 ```sh
 sudo nano /etc/systemd/system/bme688_view.service
 ```
-7. Reload services:
+7. Reload services and enable and start web view:
 ```sh
 sudo systemctl daemon-reload
-```
-8. Enable web view:
-```sh
 sudo systemctl enable bme688_view
-```
-9. Start web view:
-```sh
 sudo systemctl start bme688_view
 ```
 
-After completing these three steps you should now be able to see your BME688 at your Raspberry Pi's port `8050`.
+You should now be able to see your BME688 at your Raspberry Pi's port `8050`.
