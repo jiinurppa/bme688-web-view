@@ -70,28 +70,28 @@ END
 ### 2. Logger
 
 1. Create virtual environment in folder `logger`:
-```sh
+```bash
 python -m venv env
 ```
 2. Activate virtual environment:
-```sh
+```bash
 source env/bin/activate
 ```
 3. Install MySQLdb and [BME68x](https://github.com/mcalisterkm/bme68x-python-library-bsec2.6.1.0) Python packages. You might also want to run [burn_in.py](https://github.com/mcalisterkm/bme68x-python-library-bsec2.6.1.0/blob/main/examples/burn_in.py) and provide your own `state_bme688.txt` file for more accurate measurements.
 4. Deactivate virtual environment:
-```sh
+```bash
 deactivate
 ```
 5. Copy service file:
-```sh
+```bash
 sudo cp bme688_logger.service /etc/systemd/system/
 ```
 6. Edit service file to match your directory structure:
-```sh
+```bash
 sudo nano /etc/systemd/system/bme688_logger.service
 ```
 7. Reload services and enable and start logger:
-```sh
+```bash
 sudo systemctl daemon-reload
 sudo systemctl enable bme688_logger
 sudo systemctl start bme688_logger
@@ -102,34 +102,57 @@ The logger service will now write measurements to the database at XX:00, XX:15, 
 ### 3. Web view
 
 1. Create virtual environment in folder `view`:
-```sh
+```bash
 python -m venv env
 ```
 2. Activate virtual environment:
-```sh
+```bash
 source env/bin/activate
 ```
 3. Install packages:
-```sh
+```bash
 pip install -r requirements.txt
 ```
 4. Deactivate virtual environment:
-```sh
+```bash
 deactivate
 ```
 5. Copy service file:
-```sh
+```bash
 sudo cp bme688_view.service /etc/systemd/system/
 ```
 6. Edit service file to match your directory structure:
-```sh
+```bash
 sudo nano /etc/systemd/system/bme688_view.service
 ```
 7. Reload services and enable and start web view:
-```sh
+```bash
 sudo systemctl daemon-reload
 sudo systemctl enable bme688_view
 sudo systemctl start bme688_view
 ```
 
 You should now be able to see your BME688 at your Raspberry Pi's port `8050`.
+
+### Notes
+
+You can see more data in the dropdown menu by uncommenting lines from `col_to_label` declaration in `bme688_view.py`.
+
+Dash, by default, gets some resources from external CDNs. We have our own server, so relying on other servers is not necessary. To fix this, I added the required `.css` files to the `assets` folder and added these two lines of code:
+```python
+app.css.config.serve_locally = True
+app.scripts.config.serve_locally = True
+```
+
+Speaking of `.css` files, if you don't like the current theme (SLATE), you can download other themes [here](https://www.dash-bootstrap-components.com/docs/themes/). Then update this part of `bme688_view.py`:
+```python
+SLATE = "assets/slate/bootstrap.min.css"
+app = Dash(external_stylesheets=[SLATE])
+```
+
+You can change the look of the graph, by changing the `template` parameter here:
+```python
+fig = px.line(data_frame=df, x="timestamp", y=val, labels=col_to_label, template="plotly_dark")
+```
+
+It also seems like the database connection will eventually timeout and reloading the page will at first show a broken graph. Adding `pool_pre_ping=True` to the `create_engine` call fixed this.
